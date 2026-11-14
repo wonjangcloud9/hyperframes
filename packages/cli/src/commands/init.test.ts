@@ -131,13 +131,15 @@ describe("hyperframes init flag rename", () => {
       expect(res.status).toBe(0);
       expect(existsSync(join(target, "index.html"))).toBe(true);
       expect(res.stdout).toContain("npm run dev");
-      expect(res.stdout).toContain("npm run check");
-      expect(res.stdout).toContain("npm run render");
+      expect(res.stdout).not.toMatch(/npm run (check|render)/);
 
       const pkg = JSON.parse(readFileSync(join(target, "package.json"), "utf-8")) as {
         private?: boolean;
         type?: string;
+        scripts: Record<string, string>;
       };
+      expect(res.stdout).toContain(pkg.scripts.check);
+      expect(res.stdout).toContain(pkg.scripts.render);
       expect(pkg.private).toBe(true);
       expect(pkg.type).toBe("module");
       expectScaffoldedScripts(target);

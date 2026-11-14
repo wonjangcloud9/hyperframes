@@ -1060,10 +1060,14 @@ export default defineCommand({
       console.log(`     ${c.accent(`cd ${shellArg(name)}`)} && ${c.accent("npm run dev")}`);
       console.log();
       console.log(`  ${c.accent("5.")} Check the composition:`);
-      console.log(`     ${c.accent(`cd ${shellArg(name)}`)} && ${c.accent("npm run check")}`);
+      console.log(
+        `     ${c.accent(`cd ${shellArg(name)}`)} && ${c.accent(hyperframesScript("check"))}`,
+      );
       console.log();
       console.log(`  ${c.accent("6.")} Render to MP4 when ready:`);
-      console.log(`     ${c.accent(`cd ${shellArg(name)}`)} && ${c.accent("npm run render")}`);
+      console.log(
+        `     ${c.accent(`cd ${shellArg(name)}`)} && ${c.accent(hyperframesScript("render"))}`,
+      );
       console.log();
       console.log(`  ${c.dim(`Full docs: ${cliSourced("https://hyperframes.heygen.com")}`)}`);
       return;
